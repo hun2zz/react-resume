@@ -10,11 +10,14 @@
   height: 56px;
   border-radius: 12px;
   border: solid 1px rgb(244, 180, 107);
+  .active {
+    background: rgba(255, 223, 186, 0.5);
+  }
 
   .logoContainer {
     display: flex;
     align-items: center;
-    flex: 15%;
+    flex: 14%;
     height: 100%;
     padding: 0 10px;
     border-right: solid 1px rgb(244, 180, 107);
@@ -34,7 +37,7 @@
   }
 
   .navia {
-    flex: 28.33%;
+    flex: 17%;
     text-align: center;
     align-content: center;
     border-right: solid 1px rgb(244, 180, 107);
