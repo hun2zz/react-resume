@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .hellopage {
+    font-weight: 700;
+    font-size: 11rem;
+    font-style: italic;
+    color: rgb(244, 180, 107);
+  }
+  .intro {
+    color: rgb(244, 180, 107);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}
