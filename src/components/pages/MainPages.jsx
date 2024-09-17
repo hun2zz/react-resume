@@ -13,6 +13,7 @@ import NavigationBar from "./NavigationBar";
 import ScrollIndicator from "./ScrollIndicator";
 import Introduce from "./Introduce";
 import LogCurrentSection from "./LogCurrentSection";
+import Skill from "./Skill";
 
 const MainPages = () => {
   const [currentSection, setCurrentSection] = useState(0);
@@ -31,7 +32,7 @@ const MainPages = () => {
             <Introduce></Introduce>
           </FullpageSection>
           <FullpageSection className={styles.main}>
-            <h1>Screen 3</h1>
+            <Skill></Skill>
           </FullpageSection>
           <FullpageSection className={styles.main}>
             <h1>Screen 4</h1>
