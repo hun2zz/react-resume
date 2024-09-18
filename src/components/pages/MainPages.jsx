@@ -14,6 +14,7 @@ import ScrollIndicator from "./ScrollIndicator";
 import Introduce from "./Introduce";
 import LogCurrentSection from "./LogCurrentSection";
 import Skill from "./Skill";
+import Project from "./Project";
 
 const MainPages = () => {
   const [currentSection, setCurrentSection] = useState(0);
@@ -35,7 +36,7 @@ const MainPages = () => {
             <Skill></Skill>
           </FullpageSection>
           <FullpageSection className={styles.main}>
-            <h1>Screen 4</h1>
+            <Project />
           </FullpageSection>
           <FullpageSection className={styles.main}>
             <h1>Screen 5</h1>
