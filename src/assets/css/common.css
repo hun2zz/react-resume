@@ -11,7 +11,8 @@ body {
   /* padding: 0 250px !important; */
   max-width: 1200px;
   min-height: 100vh;
-  background: #f1eeee;
+  background: #242424;
+  /* rgb(255 199 0) */
 }
 
 .container {
