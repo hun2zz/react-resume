@@ -9,9 +9,9 @@ body {
   position: relative;
   margin: 0 auto;
   /* padding: 0 250px !important; */
-  max-width: 1200px;
+  max-width: calc(100% - 80px);
   min-height: 100vh;
-  background: #242424;
+  background: #212426;
   /* rgb(255 199 0) */
 }
 

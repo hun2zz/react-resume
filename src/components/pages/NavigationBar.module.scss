@@ -1,52 +1,64 @@
 .navbar {
   position: fixed;
-  background: #fff;
+  left: 40px;
+  top: 40px;
+  // background: #fff;
   display: flex;
   align-items: center;
-  width: 1200px;
-  margin: 40px auto 0;
+  width: calc(100% - 80px);
   padding: 0;
   z-index: 1000;
   height: 56px;
-  border-radius: 12px;
-  border: solid 1px rgb(244, 180, 107);
+
   .active {
-    background: rgba(255, 223, 186, 0.5);
+    // background: rgba(255, 223, 186, 0.5);
+    background-color: #e2f266;
   }
 
   .logoContainer {
     display: flex;
     align-items: center;
-    flex: 14%;
     height: 100%;
-    padding: 0 10px;
-    border-right: solid 1px rgb(244, 180, 107);
+    flex-shrink: 0;
+    width: 180px;
   }
 
   .profileImage {
-    width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
-    border: 1px solid rgb(244, 180, 107);
+    // border: 1px solid #e2f266;
+    color: #fff;
   }
 
   .logoText {
     font-size: 1.3rem;
     font-weight: 700;
   }
-
+  ul {
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    border: solid 1px #e2f266;
+    height: 100%;
+    width: calc(100% - 180px);
+    overflow: hidden;
+  }
   .navia {
-    flex: 17%;
+    // flex: 17%;
+    width: 20%;
     text-align: center;
     align-content: center;
-    border-right: solid 1px rgb(244, 180, 107);
+    border-right: solid 1px #e2f266;
     height: 100%;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #e2f266;
+    font-size: 22px;
+    background-color: #F2EA7710;
 
     &:last-child {
       border-right: none;

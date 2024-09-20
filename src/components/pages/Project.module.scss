@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   margin-top: 6rem;
-  color: rgb(244, 180, 107);
+  color: #e2f266;
   font-style: italic;
 }
 
@@ -21,7 +21,7 @@
   text-align: center;
   margin-bottom: 40px;
   font-weight: 600;
-  color: rgb(244, 180, 107);
+  color: #e2f266;
 }
 
 .projectGrid {
@@ -88,7 +88,7 @@
 }
 
 .projectTitle {
-  color: rgb(244, 180, 107);
+  color: #e2f266;
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
@@ -127,10 +127,10 @@
 
 .modalTitle {
   font-size: 2.5rem;
-  color: rgb(244, 180, 107);
+  color: #e2f266;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  border-bottom: 2px solid rgb(244, 180, 107);
+  border-bottom: 2px solid #e2f266;
   padding-bottom: 0.5rem;
 }
 
@@ -148,7 +148,7 @@
 
 .modalSubtitle {
   font-size: 1.5rem;
-  color: rgb(244, 180, 107);
+  color: #e2f266;
   font-weight: 600;
   margin-top: 1.5rem;
   margin-bottom: 1rem;
@@ -166,7 +166,7 @@
 
     &::before {
       content: "•";
-      color: rgb(244, 180, 107);
+      color: #e2f266;
       font-weight: bold;
       position: absolute;
       left: 0;
@@ -183,7 +183,7 @@
 
 .techBadge {
   background-color: rgba(244, 180, 107, 0.2);
-  color: rgb(244, 180, 107);
+  color: #e2f266;
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -197,11 +197,11 @@
 
 .emphasis {
   font-weight: 700;
-  color: rgb(244, 180, 107);
+  color: #e2f266;
 }
 
 .closeButton {
-  background-color: rgb(244, 180, 107);
+  background-color: #e2f266;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -213,6 +213,6 @@
   margin: 2rem auto 0;
 
   &:hover {
-    background-color: darken(rgb(244, 180, 107), 10%);
+    background-color: darken(#e2f266, 10%);
   }
 }
