@@ -1,8 +1,7 @@
 .overviewContainer {
   position: relative;
   width: 100%;
-  height: 100vh;
-  color: #000;
+  // height: 100vh;
   overflow: hidden;
   padding: 2rem;
   box-sizing: border-box;
@@ -10,17 +9,29 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  h2{
+    font-size: 14rem;
+    text-align: right;
+    margin-left: auto;
+    &::after{
+      content: '';
+      display: inline-block;
+    }
+  }
   .contentContainer {
     margin-bottom: 2rem;
+    margin-left: auto;
     .content {
       margin: 0;
       line-height: 2;
+      text-align: right;
+      font-weight: 200;
+
+      font-size: 1.2rem;
+      line-height: 1.6;
       .emphasis {
-        font-weight: 700;
-        background-color: rgba(255, 223, 186, 0.5); // 파스텔 오렌지 색상
-        padding: 2px 4px;
-        border-radius: 3px;
-        transition: background-color 0.3s ease;
+        font-weight: 400;
+
 
         &:hover {
           background-color: rgba(255, 223, 186, 0.8);
@@ -30,25 +41,17 @@
   }
 
   // 추가적인 데코레이션을 위한 스타일
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-  }
+  // &::before,
+  // &::after {
+  //   content: "";
+  //   position: absolute;
+  //   width: 200px;
+  //   height: 200px;
+  //   background: rgba(255, 255, 255, 0.1);
+  //   border-radius: 50%;
+  // }
 
-  &::before {
-    top: -100px;
-    left: -100px;
-  }
 
-  &::after {
-    bottom: -100px;
-    right: -100px;
-  }
 }
 
 .title {
@@ -76,8 +79,11 @@
   justify-content: space-between;
   position: relative;
   align-content: start;
-  align-self: flex-start; // 추가: 자신을 왼쪽으로 정렬
   z-index: 2;
+  // background-color: #e2f266;
+  border-radius: 24px;
+  color: #212426;
+  width: 100%;
 }
 
 .column {
@@ -90,9 +96,10 @@
 
   h2 {
     font-size: 2rem;
-    color: #e2f266;
+    color: #212426;
     font-weight: 600;
     font-style: italic;
+   
   }
 
   p {

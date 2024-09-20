@@ -6,7 +6,10 @@ const NavigationBar = ({ currentSection }) => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
-        <img src={profileImage} alt="프로필" className={styles.profileImage} />
+        <p className={styles.profileImage} >
+        <img src={profileImage} alt="프로필"/>
+
+        </p>
         <span className={styles.logoText}>SANGHUN</span>
       </div>
       <ul>
