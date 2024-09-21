@@ -11,15 +11,15 @@
   align-items: flex-start;
   flex-direction: column;
 
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-  }
+  // &::before,
+  // &::after {
+  //   content: "";
+  //   position: absolute;
+  //   width: 200px;
+  //   height: 200px;
+  //   background: rgba(255, 255, 255, 0.1);
+  //   border-radius: 50%;
+  // }
 
   &::before {
     top: -100px;
