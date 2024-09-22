@@ -4,15 +4,24 @@ html,
 body {
   font-size: 16px;
 }
-
 body {
+  background: #222;
+  scroll-behavior: smooth;
+}
+main {
   position: relative;
-  margin: 0 auto;
   /* padding: 0 250px !important; */
-  max-width: calc(100% - 80px);
+  width: 100%;
   min-height: 100vh;
   background: #222;
   /* rgb(255 199 0) */
+}
+main.ligthSection {
+  background: #eeff04;
+}
+.nogal {
+  font-family: "Nogal", sans-serif;
+  font-style: normal;
 }
 
 .container {
@@ -61,3 +70,4 @@ h1.title {
 *::-webkit-scrollbar {
   display: none;
 }
+
