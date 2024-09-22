@@ -44,7 +44,7 @@ html,
 body {
   width: 100%;
   height: 100%;
-  font-family: "Nogal", "Pretendard", sans-serif;
+  font-family: "Bw Gradual", "Pretendard", sans-serif;
   font-size: 16px;
   color: #f0f0f0;
   line-height: 1.5;
@@ -453,8 +453,78 @@ textarea {
 
   unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
 }
-/* Nogal 폰트 설정 */
+/* dd 폰트 설정 */
 
+@font-face {
+  font-family: "Bw Gradual";
+  font-weight: 100;
+  font-style: normal;
+  src: url("../fonts/BwGradual/BwGradualDEMO-Thin.otf")
+    format("opentype");
+  unicode-range: U+0000-007F;
+}
+
+@font-face {
+  font-family: "Bw Gradual";
+  font-weight: 200;
+  font-style: normal;
+  src: url("../fonts/BwGradual/BwGradualDEMO-Light.otf ")
+    format("opentype");
+  unicode-range: U+0000-007F;
+}
+
+@font-face {
+  font-family: "Bw Gradual";
+  font-weight: 300;
+  font-style: normal;
+  src: url("../fonts/BwGradual/BwGradualDEMO-Light.otf ")format("opentype");
+  unicode-range: U+0000-007F;
+}
+
+@font-face {
+  font-family: "Bw Gradual";
+  font-weight: 400;
+  font-style: normal;
+  src: url("../fonts/BwGradual/BwGradualDEMO-Regular.otf") format("opentype");
+  unicode-range: U+0000-007F;
+}
+
+@font-face {
+  font-family: "Bw Gradual";
+  font-weight: 500;
+  font-style: normal;
+  src: url("../fonts/BwGradual/BwGradualDEMO-Medium.otf") format("opentype");
+  unicode-range: U+0000-007F;
+}
+
+
+
+@font-face {
+  font-family: "Bw Gradual";
+  font-weight: 700;
+  font-style: normal;
+  src: url("../fonts/BwGradual/BwGradualDEMO-Bold.otf") format("opentype");
+  unicode-range: U+0000-007F;
+}
+
+@font-face {
+  font-family: "Bw Gradual";
+  font-weight: 800;
+  font-style: normal;
+  src: url("../fonts/BwGradual/BwGradualDEMO-ExtraBold.otf")
+    format("opentype");
+  unicode-range: U+0000-007F;
+}
+
+@font-face {
+  font-family: "Bw Gradual";
+  font-weight: 900;
+  font-style: normal;
+  src: url("../fonts/BwGradual/BwGradualDEMO-Black.otf") format("opentype");
+  unicode-range: U+0000-007F;
+}
+/* Nogal */
+/* 
 @font-face {
   font-family: "Nogal";
   font-weight: 100;
@@ -520,4 +590,4 @@ textarea {
   font-style: normal;
   src: url("../fonts/nogal/15-Nogal-Blk-BF66bc26191c118.otf") format("opentype");
   unicode-range: U+0000-007F;
-}
+} */

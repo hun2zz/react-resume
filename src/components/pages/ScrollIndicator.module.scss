@@ -12,7 +12,7 @@
 .mouse {
   width: 25px;
   height: 40px;
-  border: 2px solid #e2f266;
+  border: 2px solid #eeff04;
   border-radius: 20px;
   position: relative;
 }
@@ -20,7 +20,7 @@
 .wheel {
   width: 6px;
   height: 6px;
-  background-color: #e2f266;
+  background-color: #eeff04;
   border-radius: 50%;
   position: absolute;
   top: 10px;
@@ -32,8 +32,8 @@
 .arrow {
   width: 10px;
   height: 10px;
-  border-right: 2px solid #e2f266;
-  border-bottom: 2px solid #e2f266;
+  border-right: 2px solid #eeff04;
+  border-bottom: 2px solid #eeff04;
   transform: rotate(45deg);
   margin-top: 10px;
   animation: bounce 1.5s infinite;

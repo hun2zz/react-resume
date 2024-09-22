@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   margin-top: 6rem;
-  color: #e2f266;
+  color: #eeff04;
   font-style: italic;
 }
 
@@ -21,7 +21,7 @@
   text-align: center;
   margin-bottom: 40px;
   font-weight: 600;
-  color: #e2f266;
+  color: #eeff04;
 }
 
 .projectGrid {
@@ -88,7 +88,7 @@
 }
 
 .projectTitle {
-  color: #e2f266;
+  color: #eeff04;
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
@@ -127,10 +127,10 @@
 
 .modalTitle {
   font-size: 2.5rem;
-  color: #e2f266;
+  color: #eeff04;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  border-bottom: 2px solid #e2f266;
+  border-bottom: 2px solid #eeff04;
   padding-bottom: 0.5rem;
 }
 
@@ -148,7 +148,7 @@
 
 .modalSubtitle {
   font-size: 1.5rem;
-  color: #e2f266;
+  color: #eeff04;
   font-weight: 600;
   margin-top: 1.5rem;
   margin-bottom: 1rem;
@@ -166,7 +166,7 @@
 
     &::before {
       content: "•";
-      color: #e2f266;
+      color: #eeff04;
       font-weight: bold;
       position: absolute;
       left: 0;
@@ -183,7 +183,7 @@
 
 .techBadge {
   background-color: rgba(244, 180, 107, 0.2);
-  color: #e2f266;
+  color: #eeff04;
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -197,11 +197,11 @@
 
 .emphasis {
   font-weight: 700;
-  color: #e2f266;
+  color: #eeff04;
 }
 
 .closeButton {
-  background-color: #e2f266;
+  background-color: #eeff04;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -213,6 +213,6 @@
   margin: 2rem auto 0;
 
   &:hover {
-    background-color: darken(#e2f266, 10%);
+    background-color: darken(#eeff04, 10%);
   }
 }
