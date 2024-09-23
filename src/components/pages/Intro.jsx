@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Intro.module.scss";
-import FloatingCircle from "./Circle";
 
 const Intro = () => {
   return (
