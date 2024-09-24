@@ -29,3 +29,7 @@
   width: 90%;
   max-width: 1200px;
 }
+/* Locomotive-scroll을 위한 CSS 설정 */
+[data-scroll-container] {
+  overflow: hidden; /* locomotive-scroll의 스크롤 관리를 위해 숨김 */
+}
