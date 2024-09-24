@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Element } from "react-scroll";
 import Intro from "./Intro";
 import NavigationBar from "./NavigationBar";
@@ -9,65 +10,37 @@ import styles from "./MainPages.module.scss";
 import MarqueeComponent from "./MarqueeComponent";
 
 const MainPages = () => {
-  const [currentSection, setCurrentSection] = useState(0);
-
-  // 각 섹션의 ref 생성
-  const introRef = useRef(null);
   const introduceRef = useRef(null);
-  const skillRef = useRef(null);
-  const projectRef = useRef(null);
-  const screen5Ref = useRef(null);
 
-  useEffect(() => {
-    // IntersectionObserver를 사용하여 섹션 진입 감지
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const sectionName = entry.target.getAttribute("data-section");
-            const sectionIndex = [
-              "intro",
-              "introduce",
-              "skill",
-              "project",
-              "screen5",
-            ].indexOf(sectionName);
-            setCurrentSection(sectionIndex);
-            console.log("현재 섹션 인덱스:", sectionIndex);
-          }
-        });
-      },
-      {
-        root: null, // viewport를 root로 설정
-        threshold: 0.7, // 50% 이상 보이면 감지
-      }
-    );
+  const { scrollYProgress } = useScroll({
+    target: introduceRef,
+    offset: ["start end", "end start"],
+  });
 
-    // 각 섹션의 ref를 observer에 등록
-    const sectionRefs = [
-      introRef,
-      introduceRef,
-      skillRef,
-      projectRef,
-      screen5Ref,
-    ];
-    sectionRefs.forEach((ref) => {
-      if (ref.current) observer.observe(ref.current);
-    });
-
-    // 컴포넌트 언마운트 시 observer 해제
-    return () => {
-      sectionRefs.forEach((ref) => {
-        if (ref.current) observer.unobserve(ref.current);
-      });
-    };
-  }, []);
+  const yellowOpacity = useTransform(
+    scrollYProgress,
+    [0.2, 0.4, 0.5, 0.6], // 조정된 스크롤 진행 지점
+    // [
+    //   "rgba(0, 0, 0, 1)", // 시작 시 검은색
+    //   "rgba(0, 0, 0, 1)", // 약간 늦춰진 시작점
+    //   "rgba(238, 255, 4, 1)", // Introduce 섹션 내부 노란색
+    //   "rgba(0, 0, 0, 1)", // 더 빨리 검은색으로 돌아감
+    // ]
+    [0, 1, 1, 0] // 투명도 설정 (노란색 레이어)
+  );
 
   return (
-    <main className={currentSection === 1 ? "ligthSection" : ""}>
-      <NavigationBar currentSection={currentSection} />
+    <motion.main>
+      <NavigationBar />
+      {/* 노란색 배경 레이어 */}
+      <motion.div
+        className="yellowBackground"
+        style={{
+          opacity: yellowOpacity, // 스크롤에 따른 투명도 설정
+        }}
+      />
 
-      <div ref={introRef} data-section="intro">
+      <div data-section="intro">
         <Element name="intro" className={styles.section}>
           <Intro />
           <MarqueeComponent />
@@ -80,24 +53,24 @@ const MainPages = () => {
         </Element>
       </div>
 
-      <div ref={skillRef} data-section="skill">
+      <div data-section="skill">
         <Element name="skill" className={styles.section}>
           <Skill />
         </Element>
       </div>
 
-      <div ref={projectRef} data-section="project">
+      <div data-section="project">
         <Element name="project" className={styles.section}>
           <Project />
         </Element>
       </div>
 
-      <div ref={screen5Ref} data-section="screen5">
+      <div data-section="screen5">
         <Element name="screen5" className={styles.section}>
           <h1>Screen 5</h1>
         </Element>
       </div>
-    </main>
+    </motion.main>
   );
 };
 

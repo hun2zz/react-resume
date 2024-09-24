@@ -3,6 +3,7 @@
 html,
 body {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 body {
   background: #222;
@@ -14,11 +15,24 @@ main {
   width: 100%;
   min-height: 100vh;
   background: #222;
+  transition: background 0.5s ease-in-out;
+
   /* rgb(255 199 0) */
 }
 main.ligthSection {
   background: #eeff04;
-  
+}
+/* 노란색 배경 레이어 추가 */
+.yellowBackground {
+  position: absolute; /* main 내에서 절대 위치 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #eeff04; /* 노란색 */
+  transition: opacity 0.5s ease-in-out; /* 부드러운 전환 효과 */
+  pointer-events: none; /* 클릭 이벤트 방지 */
+  z-index: 0; /* 다른 콘텐츠 뒤에 위치 */
 }
 .nogal {
   font-family: "Nogal", sans-serif;
@@ -71,4 +85,3 @@ h1.title {
 *::-webkit-scrollbar {
   display: none;
 }
-
