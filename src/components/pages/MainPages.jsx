@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import LocomotiveScroll from "locomotive-scroll";
-import "locomotive-scroll/dist/locomotive-scroll.css";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap"; // GSAP 라이브러리
+import { ScrollTrigger } from "gsap/ScrollTrigger"; // ScrollTrigger 플러그인
 import Intro from "./Intro";
 import NavigationBar from "./NavigationBar";
 import Introduce from "./Introduce";
@@ -10,90 +9,68 @@ import Project from "./Project";
 import styles from "./MainPages.module.scss";
 import MarqueeComponent from "./MarqueeComponent";
 
+gsap.registerPlugin(ScrollTrigger); // ScrollTrigger 플러그인 등록
+
 const MainPages = () => {
   const containerRef = useRef(null);
-  const scrollInstanceRef = useRef(null); // LocomotiveScroll 인스턴스를 저장할 ref
-  const scrollY = useMotionValue(0);
-  const [isYellowBackground, setIsYellowBackground] = useState(false);
-  const [currentSection, setCurrentSection] = useState("");
-
-  const backgroundColor = useTransform(
-    scrollY,
-    [
-      0,
-      window.innerHeight * 0.8,
-      window.innerHeight * 1.2,
-      window.innerHeight * 1.75,
-      window.innerHeight * 2,
-    ],
-    ["#222", "#222", "#eeff04", "#eeff04", "#222"]
-  );
 
   useEffect(() => {
-    const scroll = new LocomotiveScroll({
-      el: containerRef.current,
-      smooth: true,
-      multiplier: 0.4,
-      lerp: 0.08,
-      smartphone: {
-        smooth: true,
-        multiplier: 0.6,
-      },
-      tablet: {
-        smooth: true,
-        multiplier: 0.6,
-      },
-    });
+    // ScrollTrigger 초기화
+    ScrollTrigger.refresh();
 
-    scroll.on("scroll", (instance) => {
-      scrollY.set(instance.scroll.y);
-
-      const startTransition = window.innerHeight * 0.8;
-      const endTransition = window.innerHeight * 1.75;
-
-      if (
-        instance.scroll.y >= startTransition &&
-        instance.scroll.y <= endTransition
-      ) {
-        setIsYellowBackground(true);
-      } else {
-        setIsYellowBackground(false);
+    // 첫 번째 애니메이션: Introduce 섹션에 들어갈 때 배경색 변경
+    gsap.fromTo(
+      containerRef.current,
+      { backgroundColor: "#222" }, // 초기 배경색
+      {
+        backgroundColor: "#eeff04", // 변경될 배경색
+        // ease: "none", // 애니메이션 효과 없음
+        ease: "power2.inOut", // 이징 함수 적용
+        scrollTrigger: {
+          trigger: "#introduce", // 트리거 요소
+          start: "top bottom", // 트리거 시작 지점 조정
+          end: "top top", // 트리거 끝 지점 조정
+          scrub: true, // 스크롤에 따라 애니메이션 진행
+          markers: true,
+        },
       }
+    );
 
-      // 현재 스크롤 위치에 따라 섹션 업데이트
-      const sections = [
-        { id: "intro", offset: 0 },
-        { id: "introduce", offset: window.innerHeight },
-        { id: "skill", offset: window.innerHeight * 2 },
-        { id: "project", offset: window.innerHeight * 3 },
-        { id: "screen5", offset: window.innerHeight * 4 },
-      ];
+    // 두 번째 애니메이션: Skill 섹션으로 이동할 때 배경색 원래 색으로 변경
+    gsap.fromTo(
+      containerRef.current,
+      { backgroundColor: "#eeff04" }, // 현재 노란색 배경
+      {
+        backgroundColor: "#222", // 변경될 배경색 (원래 색)
+        ease: "none", // 애니메이션 효과 없음
+        scrollTrigger: {
+          trigger: "#skill", // 다음 섹션 트리거
+          start: "top bottom", // 트리거 시작 지점 조정
+          end: "top top", // 트리거 끝 지점 조정
+          scrub: true, // 스크롤에 따라 애니메이션 진행
+        },
+      }
+    );
 
-      sections.forEach((section) => {
-        if (
-          instance.scroll.y >= section.offset &&
-          instance.scroll.y < section.offset + window.innerHeight
-        ) {
-          setCurrentSection(section.id);
-        }
-      });
-    });
+    // // Introduce 섹션 중앙에서 화면 고정
+    // gsap.to(containerRef.current, {
+    //   scrollTrigger: {
+    //     trigger: "#introduce",
+    //     start: "center center", // introduce 섹션의 중간
+    //     end: "bottom center", // introduce 섹션의 끝에서 해제
+    //     pin: true, // 화면 고정
+    //     pinSpacing: false, // pinning 시 추가되는 공간을 없앰
+    //   },
+    // });
 
-    scrollInstanceRef.current = scroll; // scroll 인스턴스를 ref에 저장
-
-    return () => {
-      if (scroll) scroll.destroy();
-    };
-  }, [scrollY]);
+    // ScrollTrigger 새로고침하여 설정 반영
+    ScrollTrigger.refresh();
+  }, []);
 
   return (
     <>
-      <NavigationBar
-        isYellowBackground={isYellowBackground}
-        currentSection={currentSection}
-        scrollInstance={scrollInstanceRef.current} // scroll 인스턴스를 전달
-      />
-      <motion.main ref={containerRef} style={{ backgroundColor }}>
+      <NavigationBar />
+      <div ref={containerRef} className={styles.container}>
         <div id="intro" className={styles.section}>
           <Intro />
           <MarqueeComponent />
@@ -110,7 +87,7 @@ const MainPages = () => {
         <div id="screen5" className={styles.section}>
           <h1>Screen 5</h1>
         </div>
-      </motion.main>
+      </div>
     </>
   );
 };

@@ -29,7 +29,13 @@ const NavigationBar = ({
   };
 
   return (
-    <nav className={styles.navbar}>
+    <nav
+      className={
+        isYellowBackground
+          ? `${styles.navbar} ${styles.lightSection}`
+          : `${styles.navbar}`
+      }
+    >
       <div className={styles.logoContainer}>
         <p className={styles.profileImage}>
           <img src={profileImage} alt="프로필" />

@@ -6,6 +6,10 @@
   max-width: calc(100% - 80px);
 }
 
+.container {
+  background: #222;
+  
+}
 .section1 {
   display: flex;
   // justify-content: center;
@@ -29,3 +33,22 @@
   width: 90%;
   max-width: 1200px;
 }
+// #intro {
+//   background-color: #222;
+// }
+
+// #introduce {
+//   background-color: #444; /* 스크롤 시작 배경색 */
+// }
+
+// #skill {
+//   background-color: #666;
+// }
+
+// #project {
+//   background-color: #888;
+// }
+
+// #screen5 {
+//   background-color: #aaa;
+// }
