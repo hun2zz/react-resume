@@ -31,7 +31,7 @@ const Introduce = () => {
         scrollTrigger: {
           trigger: container,
           start: "center center", // Introduce 섹션의 가운데 지점에 도달하면 시작
-          
+
           pin: true, // Introduce 섹션 고정
           scrub: true, // 스크롤에 따라 애니메이션 진행
           markers: true, // 디버그를 위한 마커 표시end: "center+=1300", // 일정 스크롤 길이 후 끝
@@ -94,9 +94,7 @@ const Introduce = () => {
           <h3>Name</h3>
           <p>진상훈, Jin SangHun</p>
           <h3>Location</h3>
-          <p>
-            Yeongdeungpo-gu, Seoul, South Korea
-          </p>
+          <p>Yeongdeungpo-gu, Seoul, South Korea</p>
           <h3>Phone</h3>
           <p>
             <a href="tel:010-5625-4949" className={styles.link}>

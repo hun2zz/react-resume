@@ -12,7 +12,7 @@ const NavigationBar = ({
     { name: "Overview", to: "introduce" },
     { name: "Skill", to: "skill" },
     { name: "Project", to: "project" },
-    { name: "Screen 5", to: "screen5" },
+    { name: "Education", to: "education" },
   ];
 
   const handleNavigation = (id) => {

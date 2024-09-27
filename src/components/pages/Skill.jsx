@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./Skill.module.scss";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Skill = () => {
   const skills = [
