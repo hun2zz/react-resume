@@ -1,109 +1,154 @@
 .overviewContainer {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  color: #000;
+  min-height: 150vh;
+  color: #fff;
   overflow: hidden;
-  padding: 2rem;
+  padding: 4rem 2rem;
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
   flex-direction: column;
+  align-items: center;
+}
 
-  // &::before,
-  // &::after {
-  //   content: "";
-  //   position: absolute;
-  //   width: 200px;
-  //   height: 200px;
-  //   background: rgba(255, 255, 255, 0.1);
-  //   border-radius: 50%;
-  // }
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
 
-  &::before {
-    top: -100px;
-    left: -100px;
-  }
-
-  &::after {
-    bottom: -100px;
-    right: -100px;
-  }
+.titleLine {
+  flex-grow: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5));
 }
 
 .title {
-  font-size: 8rem;
-  color: #eeff04;
-  font-weight: 700;
-  font-style: italic;
-  margin-bottom: 2rem;
+  font-size: 3.5rem;
+  color: #fff;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  margin: 0 1rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+// 왼쪽의 작은 원 추가
+.titleWrapper::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background-color: #ff6b6b;
+  border-radius: 50%;
+  transform: translateY(-50%);
 }
 
 .infoSection {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 6rem;
   align-items: flex-start;
   width: 100%;
 }
 
 .column {
   width: 100%;
-  max-width: 1200px;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
+  position: relative;
 
-  h2 {
-    font-size: 2.5rem;
-    color: #eeff04;
-    font-weight: 600;
-    font-style: italic;
-    margin-bottom: 1rem;
-    width: 20%;
-    text-align: left;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -3rem;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.1)
+    );
   }
 
-  .skillList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    width: 80%;
-    padding-top: 15px;
+  // &:last-child::after {
+  //   display: none;
+  // }
+}
 
-    .skillItem {
-      background-color: rgba(255, 223, 186, 0.5);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      color: #333;
-      white-space: nowrap;
-      transition: background-color 0.3s ease;
-      font-weight: 600;
+.categoryWrapper {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
 
-      &:hover {
-        background-color: rgba(255, 223, 186, 0.8);
-      }
-    }
+.categoryInner {
+  display: flex;
+  width: 200%;
+  align-items: center;
+
+  span {
+    font-size: 8vw;
+    color: #fff;
+    font-weight: 600;
+    font-style: italic;
+    white-space: nowrap;
+    padding-right: 0.2em;
+  }
+
+  .circle {
+    width: 0.8em;
+    height: 0.8em;
+    background-color: #ff6b6b;
+    border-radius: 50%;
+    margin: 0 0.2em;
+    flex-shrink: 0;
   }
 }
 
-@media (max-width: 768px) {
-  .column {
-    flex-direction: column;
+// leftToLeft와 rightToLeft 클래스 제거
 
-    h2 {
-      width: 100%;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
+.skillListWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+  padding-top: 1rem;
+}
 
-    .skillList {
-      width: 100%;
-      justify-content: center;
-    }
+.skillItem {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #fff;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
