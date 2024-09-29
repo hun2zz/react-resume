@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Skill = () => {
   const skillSectionRef = useRef(null);
-  const [speed, setSpeed] = useState(0);
+  const [speed, setSpeed] = useState(1); // 기본 속도를 매우 느리게 설정
 
   const skills = [
     {
@@ -42,12 +42,12 @@ const Skill = () => {
       const maxScroll =
         document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercentage = scrollPosition / maxScroll;
-      const newSpeed = 5 + scrollPercentage * 20;
+      const newSpeed = 5 + scrollPercentage * 50;
       setSpeed(newSpeed);
 
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
-        setSpeed(0);
+        setSpeed(100); // 스크롤이 멈추면 기본 속도로 돌아옴
       }, 100);
     };
 
