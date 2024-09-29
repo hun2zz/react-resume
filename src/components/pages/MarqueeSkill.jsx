@@ -1,44 +1,36 @@
-import React, { useState, useEffect } from "react";
-import Marquee from "react-fast-marquee";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import styles from "./MarqueeSkill.module.scss";
-const MarqueeSkill = ({ text }) => {
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     // 스크롤 위치에 따라 속도 계산
-  //     const scrollPosition = window.scrollY;
-  //     const maxScroll =
-  //       document.documentElement.scrollHeight - window.innerHeight;
-  //     const scrollPercentage = scrollPosition / maxScroll;
 
-  //     // 속도를 50에서 200 사이로 조절 (스크롤이 내려갈수록 빨라짐)
-  //     const newSpeed = 50 + scrollPercentage * 100;
-  //     setSpeed(newSpeed);
-  //   };
+const MarqueeSkill = ({ text, direction, speed }) => {
+  const marqueeRef = useRef(null);
 
-  //   window.addEventListener("scroll", handleScroll);
-  //   console.log(speed);
+  useEffect(() => {
+    const marquee = marqueeRef.current;
+    const distance = marquee.scrollWidth / 2;
 
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
+    gsap.to(marquee, {
+      x: direction === "left" ? -distance : distance,
+      ease: "none",
+      duration: speed,
+      repeat: -1,
+      modifiers: {
+        x: gsap.utils.unitize(x => parseFloat(x) % distance)
+      }
+    });
+  }, [direction, speed]);
 
   return (
-    <>
-      <div className={styles.box}>
-        {/* <h2 className={styles.title}>GITHUB</h2> */}
-        <Marquee
-          className={styles.wrap}
-          gradient={false}
-          speed={50}
-          direction="right"
-        >
-          <div className={styles.textBox}>
-            <span className={styles.text}>{text}</span>
+    <div className={styles.box}>
+      <div className={styles.wrap} ref={marqueeRef}>
+        {text.concat(text).map((tech, index) => (
+          <div key={index} className={styles.textBox}>
+            <span className={styles.text}>{tech}</span>
+            <div className={styles.circle}></div>
           </div>
-        </Marquee>
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,13 +1,15 @@
-import React, { useEffect, useRef } from "react";
-import styles from "./Skill.module.scss";
+import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import styles from "./Skill.module.scss";
+import MarqueeSkill from "./MarqueeSkill";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Skill = () => {
   const skillSectionRef = useRef(null);
-  const categoryRefs = useRef([]);
+  const [speed, setSpeed] = useState(0);
+
   const skills = [
     {
       category: "BackEnd",
@@ -31,55 +33,26 @@ const Skill = () => {
         "Maven",
       ],
     },
-    {
-      category: "DevOps",
-      technologies: [
-        "MySQL",
-        "MariaDB",
-        "GithubAction",
-        "AWS RDS",
-        "AWS S3",
-        "AWS EC2",
-        "Docker",
-      ],
-    },
-    {
-      category: "FrontEnd",
-      technologies: ["JavaScript", "HTML/CSS", "React.js", "SCSS"],
-    },
   ];
 
   useEffect(() => {
-    const triggers = [];
+    let scrollTimeout;
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercentage = scrollPosition / maxScroll;
+      const newSpeed = 5 + scrollPercentage * 20;
+      setSpeed(newSpeed);
 
-    categoryRefs.current.forEach((category, index) => {
-      const inner = category.querySelector(`.${styles.categoryInner}`);
-      const direction = index % 2 === 0 ? -1 : 1; // 짝수 인덱스는 왼쪽, 홀수 인덱스는 오른쪽으로 이동
-
-      // 모든 카테고리에 대해 동일한 초기 위치 설정
-      gsap.set(inner, { xPercent: direction * 30 });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: skillSectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 2,
-        },
-      });
-
-      tl.to(inner, {
-        xPercent: direction * -30, // 반대 방향으로 30% 이동
-        ease: "none",
-        duration: 5,
-      });
-
-      triggers.push(tl.scrollTrigger);
-    });
-
-    return () => {
-      triggers.forEach((trigger) => trigger.kill());
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setSpeed(0);
+      }, 100);
     };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -95,31 +68,12 @@ const Skill = () => {
       <div className={styles.infoSection}>
         {skills.map((skillCategory, index) => (
           <div key={index} className={styles.column}>
-            <div
-              className={styles.categoryWrapper}
-              ref={(el) => (categoryRefs.current[index] = el)}
-            >
-              <div
-                className={`${styles.categoryInner} ${
-                  skillCategory.category === "DevOps" ? styles.reverse : ""
-                }`}
-              >
-                {Array(40)
-                  .fill(null)
-                  .map((_, i) => (
-                    <React.Fragment key={i}>
-                      <span>{skillCategory.category}</span>
-                      <div className={styles.circle}></div>
-                    </React.Fragment>
-                  ))}
-              </div>
-            </div>
-            <div className={styles.skillListWrapper}>
-              {skillCategory.technologies.map((tech, techIndex) => (
-                <div key={techIndex} className={styles.skillItem}>
-                  {tech}
-                </div>
-              ))}
+            <div className={styles.categoryWrapper}>
+              <MarqueeSkill
+                text={skillCategory.technologies}
+                speed={speed}
+                direction="left"
+              />
             </div>
           </div>
         ))}
