@@ -14,12 +14,11 @@ const Introduce = () => {
     const content = contentRef.current;
     const container = containerRef.current;
 
-    // 텍스트를 한 글자씩 분리하여 span 태그로 감싸기
+    // 텍스트를 단어 단위로 분리하여 span 태그로 감싸기
     const splitText = (el) => {
-      el.innerHTML = el.textContent
-        .split("")
-        .map((char) => `<span>${char}</span>`)
-        .join("");
+      el.innerHTML = el.textContent.split(/(\S+)/).map(word => 
+        word.trim() ? `<span class="${styles.word} ${word.startsWith('<span') ? styles.emphasis : ''}">${word}</span>` : word
+      ).join('');
     };
 
     // 모든 p 태그의 텍스트를 분리
@@ -41,13 +40,16 @@ const Introduce = () => {
         },
       })
       .fromTo(
-        content.querySelectorAll("span"), // 모든 개별 글자(span) 선택
-        { color: "#22222220" }, // 초기 상태: 글자 회색
+        content.querySelectorAll(`.${styles.word}`), // 모든 개별 단어(span) 선택
+        { color: "#22222220", fontWeight: 300 }, // 초기 상태: 글자 회색, 폰트 두께 300
         {
           color: "#222", // 애니메이션 종료 후: 글자 검정색
-          stagger: 0.05, // 애니메이션 간격 조정 (각 글자마다)
+          fontWeight: (index, target) => { // 폰트 두께 조정
+            return target.classList.contains(styles.emphasis) ? 700 : 300;
+          },
+          stagger: 0.05, // 애니메이션 간격 조정 (각 단어마다)
           ease: "power1.inOut", // 애니메이션 효과
-          duration: 1, // 각 글자에 대한 애니메이션 지속 시간
+          duration: 1, // 각 단어에 대한 애니메이션 지속 시간
         }
       );
 
@@ -58,7 +60,7 @@ const Introduce = () => {
 
   return (
     <div ref={containerRef} className={styles.overviewContainer}>
-      <h2 className={styles.title}>Overview</h2>
+      <h2 className={styles.title}>ABOUT ME,</h2>
       <div ref={contentRef} className={styles.contentContainer}>
         <p className={styles.content}>
           다수의 프로젝트에서 <span className={styles.emphasis}>팀장 역할</span>
@@ -85,54 +87,7 @@ const Introduce = () => {
           합니다.
         </p>
       </div>
-      <div className={styles.infoSection}>
-        {/* <div className={styles.column}>
-          <h2>Profile</h2>
-          <img src={myImage} alt="진상훈" className={styles.profileImage} />
-        </div> */}
-        <div className={styles.column}>
-          <h3>Name</h3>
-          <p>진상훈, Jin SangHun</p>
-          <h3>Location</h3>
-          <p>Yeongdeungpo-gu, Seoul, South Korea</p>
-          <h3>Phone</h3>
-          <p>
-            <a href="tel:010-5625-4949" className={styles.link}>
-              010-5625-4949
-            </a>
-          </p>
-        </div>
-        <div className={styles.column}>
-          <h3>GitHub</h3>
-          <p>
-            <a
-              href="https://github.com/hun2zz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.link}
-            >
-              https://github.com/hun2zz
-            </a>
-          </p>
-          <h3>Blog</h3>
-          <p>
-            <a
-              href="https://blog.naver.com/sanghun_0"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.link}
-            >
-              https://blog.naver.com/sanghun_0
-            </a>
-          </p>
-          <h3>Email</h3>
-          <p>
-            <a href="mailto:tkdgnsdldkdlel@naver.com" className={styles.link}>
-              tkdgnsdldkdlel@naver.com
-            </a>
-          </p>
-        </div>
-      </div>
+      <div className={styles.more}>more</div>
     </div>
   );
 };

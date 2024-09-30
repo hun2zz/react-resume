@@ -4,18 +4,19 @@
   min-height: 150vh;
   color: #fff;
   overflow: hidden;
-  padding: 20rem 0rem;
+  padding: 20rem 0; // 좌우 패딩 추가
   box-sizing: border-box;
   display: flex;
   justify-content: flex-start;
-  align-items: center; // 이 줄을 수정합니다 (flex-start에서 center로)
+  align-items: flex-end; // 오른쪽 정렬을 위해 변경
   flex-direction: column;
 }
 
 .titleWrapper {
-  text-align: left;
+  text-align: right; // 오른쪽 정렬
   display: flex;
   align-items: center;
+  justify-content: flex-end; // 오른쪽 정렬
   margin-bottom: 2rem;
   width: 100%;
 }
@@ -23,21 +24,17 @@
 .titleLine {
   flex-grow: 1;
   height: 2px;
-  background: linear-gradient(
-    to right,
-    rgba(255, 107, 107, 0.7),
-    rgba(255, 107, 107, 0.1)
-  );
-  margin-left: 2rem;
+  margin-right: 2rem; // 오른쪽 마진 추가
 }
 
 .title {
-  font-size: 5rem;
+  font-size: 16rem;
   color: #fff;
   font-weight: 700;
   letter-spacing: -0.02em;
-  white-space: nowrap;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-style: italic;
+  padding: 0 6rem;
+  order: 2; // 순서 변경
 }
 
 .subtitle {
@@ -47,21 +44,21 @@
   margin-bottom: 4rem;
   max-width: 600px;
   line-height: 1.6;
-  text-align: center; // 이 줄을 추가합니다
-  margin-left: auto; // 이 줄을 추가합니다
-  margin-right: auto; // 이 줄을 추가합니다
-  width: 100%; // 이 줄을 추가합니다
+  padding: 0 4rem;
+  text-align: right; // 오른쪽 정렬
+  margin-left: auto; // 왼쪽 마진 자동
+  width: 100%;
 }
 
-// 왼쪽의 작은 원 추가
-.titleWrapper::before {
+// 오른쪽의 작은 원 추가
+.titleWrapper::after {
   content: "";
   position: absolute;
-  left: -20px;
+  right: -20px;
   top: 50%;
   width: 8px;
   height: 8px;
-  background-color: #ff6b6b;
+  background-color: #eeff04;
   border-radius: 50%;
   transform: translateY(-50%);
 }
@@ -80,25 +77,6 @@
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -3rem;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-      to right,
-      rgba(255, 107, 107, 0.1),
-      rgba(255, 107, 107, 0.7),
-      rgba(255, 107, 107, 0.1)
-    );
-  }
-
-  // &:last-child::after {
-  //   display: none;
-  // }
 }
 
 .categoryWrapper {
@@ -130,7 +108,7 @@
   .circle {
     width: 0.8em;
     height: 0.8em;
-    background-color: #ff6b6b;
+    background-color: #eeff04;
     border-radius: 50%;
     margin: 0 0.2em;
     flex-shrink: 0;

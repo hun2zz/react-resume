@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Skill = () => {
   const skillSectionRef = useRef(null);
-  const [speed, setSpeed] = useState(1); // 기본 속도를 매우 느리게 설정
+  const [speed, setSpeed] = useState(10); // 기본 속도를 매우 느리게 설정
 
   const skills = [
     {
@@ -47,7 +47,7 @@ const Skill = () => {
 
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
-        setSpeed(100); // 스크롤이 멈추면 기본 속도로 돌아옴
+        setSpeed(10); // 스크롤이 멈추면 기본 속도로 돌아옴
       }, 100);
     };
 
@@ -59,7 +59,7 @@ const Skill = () => {
     <div className={styles.overviewContainer} ref={skillSectionRef}>
       <div className={styles.titleWrapper}>
         <div className={styles.titleLine}></div>
-        <h1 className={styles.title}>Skill.</h1>
+        <h1 className={styles.title}>Skill</h1>
         <div className={styles.titleLine}></div>
       </div>
       <p className={styles.subtitle}>

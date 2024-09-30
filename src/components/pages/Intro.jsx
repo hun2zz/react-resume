@@ -6,11 +6,11 @@ const Intro = () => {
     <>
       <div className={styles.container}>
         <h1 className={styles.hellopage}>
-          Cooperative
+          I'm JIN SANGHUN,
           <br />
-          FullStack Developer
+          a Full Stack
           <br />
-          <b> Jin SangHun</b>
+          <b> developer.</b>
         </h1>
         <div className={styles.intro}>
           안녕하세요. 끊임없는 도전을 즐기는 <b>풀스택 개발자 진상훈</b>입니다.{" "}
