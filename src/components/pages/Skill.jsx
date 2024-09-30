@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import styles from "./Skill.module.scss";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import styles from "./Skill.module.scss";
-import MarqueeSkill from "./MarqueeSkill";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Skill = () => {
-  const skillSectionRef = useRef(null);
-  const [speed, setSpeed] = useState(10); // 기본 속도를 매우 느리게 설정
+  const containerRef = useRef(null);
+  const sectionRefs = useRef([]);
 
   const skills = [
     {
@@ -33,48 +32,80 @@ const Skill = () => {
         "Maven",
       ],
     },
+    {
+      category: "FrontEnd",
+      technologies: ["JavaScript", "HTML/CSS", "React.js", "SCSS"],
+    },
+    {
+      category: "DevOps",
+      technologies: [
+        "MySQL",
+        "MariaDB",
+        "GithubAction",
+        "AWS RDS",
+        "AWS S3",
+        "AWS EC2",
+        "Docker",
+      ],
+    },
   ];
 
   useEffect(() => {
-    let scrollTimeout;
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const maxScroll =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercentage = scrollPosition / maxScroll;
-      const newSpeed = 5 + scrollPercentage * 50;
-      setSpeed(newSpeed);
+    const container = containerRef.current;
+    const sections = sectionRefs.current;
 
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        setSpeed(10); // 스크롤이 멈추면 기본 속도로 돌아옴
-      }, 100);
+    sections.forEach((section, index) => {
+      gsap.set(section, { opacity: 0, y: 50 });
+
+      ScrollTrigger.create({
+        trigger: container,
+        start: `top+=${index * 33}% center`,
+        end: `top+=${(index + 1) * 33}% center`,
+        onEnter: () => {
+          gsap.to(section, {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+          });
+        },
+        onLeaveBack: () => {
+          gsap.to(section, {
+            opacity: 0,
+            y: 50,
+            duration: 0.5,
+            ease: "power2.in",
+          });
+        },
+      });
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className={styles.overviewContainer} ref={skillSectionRef}>
+    <div className={styles.overviewContainer} ref={containerRef}>
       <div className={styles.titleWrapper}>
-        <div className={styles.titleLine}></div>
-        <h1 className={styles.title}>Skill</h1>
-        <div className={styles.titleLine}></div>
+        <h1 className={styles.title}>FRONTEND & BACKEND</h1>
       </div>
-      <p className={styles.subtitle}>
-        프로젝트에서 사용하거나 공부한 기술들입니다.
-      </p>
+      <div className={styles.border}></div>
       <div className={styles.infoSection}>
-        {skills.map((skillCategory, index) => (
-          <div key={index} className={styles.column}>
-            <div className={styles.categoryWrapper}>
-              <MarqueeSkill
-                text={skillCategory.technologies}
-                speed={speed}
-                direction="left"
-              />
-            </div>
+        {skills.map((skillGroup, groupIndex) => (
+          <div
+            key={groupIndex}
+            className={styles.skillGroup}
+            ref={(el) => (sectionRefs.current[groupIndex] = el)}
+          >
+            <h2>{skillGroup.category}</h2>
+            <ul>
+              {skillGroup.technologies.map((tech, techIndex) => (
+                <li key={techIndex} className={styles.skillItem}>
+                  {tech}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>

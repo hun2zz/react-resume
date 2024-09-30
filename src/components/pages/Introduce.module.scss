@@ -15,7 +15,7 @@
     text-align: left;
     margin-right: auto;
     letter-spacing: 2px;
-    padding: 300px 60px 40px 300px;
+    padding: 200px 60px 40px 200px;
   }
   .contentContainer {
     margin-bottom: 6rem;
@@ -29,7 +29,7 @@
       font-size: 2rem;
       line-height: 1.6;
       word-break: keep-all;
-      padding: 0 300px;
+      padding: 0 200px;
       .word {
         display: inline-block;
         transition: color 0.3s, font-weight 0.3s;
@@ -66,14 +66,26 @@
   text-align: center;
   width: 100%;
   cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
   .circle {
     width: 0.4em;
     height: 0.4em;
-    background-color: #222;
+    background-color: currentColor; // 텍스트 색상과 동일하게 설정
     margin-right: 0.8rem;
     border-radius: 50%;
-    flex-shrink: 0;
     display: inline-block;
-    box-shadow: 0 0 2px rgba(#222, 0.7);
+    vertical-align: middle;
+    transition: all 0.3s ease;
+  }
+
+  &:hover .circle {
+    transform: scale(1.2);
   }
 }

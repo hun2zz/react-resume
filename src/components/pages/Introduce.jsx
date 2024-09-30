@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./Introduce.module.scss";
-import myImage from "../../assets/images/my.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +12,7 @@ const Introduce = () => {
   useEffect(() => {
     const content = contentRef.current;
     const container = containerRef.current;
+    const title = container.querySelector("h2");
 
     // 텍스트를 단어 단위로 분리하여 span 태그로 감싸기
     const splitText = (el) => {
@@ -46,6 +46,7 @@ const Introduce = () => {
           },
         },
       })
+      .fromTo(title, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 1 }) // 타이틀 애니메이션
       .fromTo(
         content.querySelectorAll(`.${styles.word}:not(.${styles.emphasis})`), // 일반 단어
         { color: "#22222220", fontWeight: 300 }, // 초기 상태: 글자 회색, 폰트 두께 300
