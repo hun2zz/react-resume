@@ -16,9 +16,16 @@ const Introduce = () => {
 
     // 텍스트를 단어 단위로 분리하여 span 태그로 감싸기
     const splitText = (el) => {
-      el.innerHTML = el.textContent.split(/(\S+)/).map(word => 
-        word.trim() ? `<span class="${styles.word} ${word.startsWith('<span') ? styles.emphasis : ''}">${word}</span>` : word
-      ).join('');
+      el.innerHTML = el.textContent
+        .split(/(\S+)/)
+        .map((word) =>
+          word.trim()
+            ? `<span class="${styles.word} ${
+                word.startsWith("<span") ? styles.emphasis : ""
+              }">${word}</span>`
+            : word
+        )
+        .join("");
     };
 
     // 모든 p 태그의 텍스트를 분리
@@ -40,17 +47,27 @@ const Introduce = () => {
         },
       })
       .fromTo(
-        content.querySelectorAll(`.${styles.word}`), // 모든 개별 단어(span) 선택
+        content.querySelectorAll(`.${styles.word}:not(.${styles.emphasis})`), // 일반 단어
         { color: "#22222220", fontWeight: 300 }, // 초기 상태: 글자 회색, 폰트 두께 300
         {
           color: "#222", // 애니메이션 종료 후: 글자 검정색
-          fontWeight: (index, target) => { // 폰트 두께 조정
-            return target.classList.contains(styles.emphasis) ? 700 : 300;
-          },
+          fontWeight: 300, // 폰트 두께 조정
           stagger: 0.05, // 애니메이션 간격 조정 (각 단어마다)
           ease: "power1.inOut", // 애니메이션 효과
           duration: 1, // 각 단어에 대한 애니메이션 지속 시간
         }
+      )
+      .fromTo(
+        content.querySelectorAll(`.${styles.emphasis}`), // 강조 단어
+        { color: "#22222220", fontWeight: 700 },
+        {
+          color: "#222",
+          fontWeight: 700,
+          stagger: 0.05,
+          ease: "power1.inOut",
+          duration: 1,
+        },
+        "<" // 이전 애니메이션과 동시에 시작
       );
 
     return () => {
@@ -87,7 +104,10 @@ const Introduce = () => {
           합니다.
         </p>
       </div>
-      <div className={styles.more}>more</div>
+      <div className={styles.more}>
+        <div className={styles.circle}></div>
+        Learn more
+      </div>
     </div>
   );
 };

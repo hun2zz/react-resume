@@ -18,7 +18,7 @@
     padding: 300px 60px 40px 300px;
   }
   .contentContainer {
-    margin-bottom: 7rem;
+    margin-bottom: 6rem;
     margin-right: auto;
     .content {
       margin: 0;
@@ -58,4 +58,22 @@
   margin-top: 2rem;
   position: relative;
   right: 30px;
+}
+
+.more {
+  color: #222;
+  letter-spacing: 2px;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+  .circle {
+    width: 0.4em;
+    height: 0.4em;
+    background-color: #222;
+    margin-right: 0.8rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-block;
+    box-shadow: 0 0 2px rgba(#222, 0.7);
+  }
 }
