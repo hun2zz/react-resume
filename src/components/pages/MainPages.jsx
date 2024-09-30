@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap"; // GSAP 라이브러리
 import { ScrollTrigger } from "gsap/ScrollTrigger"; // ScrollTrigger 플러그인
 import Intro from "./Intro";
@@ -13,6 +13,8 @@ gsap.registerPlugin(ScrollTrigger); // ScrollTrigger 플러그인 등록
 
 const MainPages = () => {
   const containerRef = useRef(null);
+  const navRef = useRef(null);
+  const [isNavHidden, setIsNavHidden] = useState(false);
 
   useEffect(() => {
     // ScrollTrigger 초기화
@@ -52,24 +54,41 @@ const MainPages = () => {
       }
     );
 
-    // // Introduce 섹션 중앙에서 화면 고정
-    // gsap.to(containerRef.current, {
-    //   scrollTrigger: {
-    //     trigger: "#introduce",
-    //     start: "center center", // introduce 섹션의 중간
-    //     end: "bottom center", // introduce 섹션의 끝에서 해제
-    //     pin: true, // 화면 고정
-    //     pinSpacing: false, // pinning 시 추가되는 공간을 없앰
-    //   },
-    // });
+    // 네비게이션 바 애니메이션
+    let lastScrollTop = 0;
+
+    const handleScroll = () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop && scrollTop > 100) {
+        // 아래로 스크롤하고 50px 이상 내려갔을 때
+        setIsNavHidden(true);
+      } else {
+        // 위로 스크롤하거나 50px 미만일 때
+        setIsNavHidden(false);
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    };
+
+    window.addEventListener("scroll", handleScroll);
 
     // ScrollTrigger 새로고침하여 설정 반영
     ScrollTrigger.refresh();
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <>
-      <NavigationBar />
+      <div
+        ref={navRef}
+        className={`${styles.navContainer} ${isNavHidden ? styles.hidden : ""}`}
+      >
+        <NavigationBar />
+      </div>
       <div ref={containerRef} className={styles.container}>
         <div id="intro" className={styles.section}>
           <Intro />

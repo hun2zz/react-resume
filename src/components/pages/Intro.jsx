@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./Intro.module.scss";
+import NavigationBar from "./NavigationBar";
 
 const Intro = () => {
   return (
     <>
+
       <div className={styles.container}>
         <h1 className={styles.hellopage}>
           I'm JIN SANGHUN,

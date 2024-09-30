@@ -1,40 +1,73 @@
 .overviewContainer {
   position: relative;
   width: 100%;
-  min-height: 150vh;
+  min-height: 100vh;
   color: #fff;
   overflow: hidden;
-  padding: 20rem 0; // 좌우 패딩 추가
+  padding: 10rem 200px;
   box-sizing: border-box;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-end; // 오른쪽 정렬을 위해 변경
   flex-direction: column;
 }
 
 .titleWrapper {
-  text-align: left; // 오른쪽 정렬
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; // 오른쪽 정렬
-  margin-bottom: 2rem;
-  width: 100%;
+  margin-bottom: 1rem;
 }
 
 .title {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #fff;
-  font-weight: 600;
-  letter-spacing: 3px;
-  padding: 0 200px;
-  margin-bottom: 10px;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
+
 .border {
-  width: (calc(100% - 400px));
-  border-bottom: 1px solid #848484;
-  margin: 0 200px;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 7rem;
 }
 
 .infoSection {
-  border: 1px solid #848484;
+  width: 100%;
+}
+
+.skillGroup {
+  display: flex;
+  margin-bottom: 7rem;
+  padding-bottom: 7rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skillMeta {
+  flex: 0 0 200px;
+  margin-right: 2rem;
+}
+
+.category {
+  display: inline-block;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid #828282;
+  font-weight: 600;
+}
+
+.skillContent {
+  flex: 1;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+
+    flex-wrap: wrap;
+  }
+}
+
+.skillItem {
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }

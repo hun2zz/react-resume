@@ -1,28 +1,31 @@
 .navbar {
-  position: sticky;
-  left: 40px;
-  top: 40px;
-  // background: #fff;
   display: flex;
   align-items: center;
   width: calc(100% - 80px);
   padding: 0;
   z-index: 1000;
   height: 50px;
-  &.lightSection{
-    .logoContainer{
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  opacity: 1;
+
+  &.hidden {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
+
+  &.lightSection {
+    .logoContainer {
       color: #222;
     }
     ul {
       background-color: #22222250;
-
-
     }
     .navia {
       color: #22222290;
 
-      &.active{
-      background-color: transparent;
+      &.active {
+        background-color: transparent;
 
         // border: solid 1px #fff;
         color: #222;
@@ -57,30 +60,27 @@
   }
 
   .logoText {
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 700;
   }
   ul {
     display: flex;
-    align-items: center;
     border-radius: 12px;
-    // border: solid 1px #eeff04;
     height: 100%;
+    justify-content: right;
     width: calc(100% - 240px);
     overflow: hidden;
-    background-color: #ffffff10;
-    backdrop-filter: blur(10px);
     > li {
-      width: 20%;
-      text-align: center;
+      text-align: right;
       align-content: center;
       // border-right: solid 1px #eeff04;
       height: 100%;
+      margin-right: 20px;
       // font-weight: 600;
       cursor: pointer;
 
       color: #fff;
-      font-size: 18px;
+      font-size: 12px;
       font-weight: 500;
       text-transform: uppercase;
 
@@ -91,9 +91,8 @@
   }
   .navia {
     // flex: 17%;wid100%
-    width: 100%;
     height: 100%;
-    border-radius: 12px; 
+    border-radius: 12px;
     align-items: center;
     justify-content: center;
     display: flex;

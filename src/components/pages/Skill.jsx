@@ -7,44 +7,45 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Skill = () => {
   const containerRef = useRef(null);
-  const sectionRefs = useRef([]);
+  const itemRefs = useRef([]);
 
   const skills = [
     {
+      category: "FrontEnd",
+      technologies: ["JavaScript,", "HTML/CSS,", "React.js,", "SCSS"],
+    },
+    {
       category: "BackEnd",
       technologies: [
-        "Java",
-        "Groovy",
-        "NodeJS",
-        "Spring Web",
-        "Spring Boot",
-        "Spring MVC",
-        "Spring Security",
-        "Spring Data JPA",
-        "Querydsl",
-        "MyBatis",
-        "Redis",
-        "JWT(JSON Web Token)",
-        "WebSocket",
-        "Hibernate",
-        "Junit4/5",
-        "Gradle",
+        "Java,",
+        "Groovy,",
+        "NodeJS,",
+        "Spring Web,",
+        "Spring Boot,",
+        "Spring MVC,",
+        "Spring Security,",
+        "Spring Data JPA,",
+        "Querydsl,",
+        "MyBatis,",
+        "Redis,",
+        "JWT(JSON Web Token),",
+        "WebSocket,",
+        "Hibernate,",
+        "Junit4/5,",
+        "Gradle,",
         "Maven",
       ],
     },
-    {
-      category: "FrontEnd",
-      technologies: ["JavaScript", "HTML/CSS", "React.js", "SCSS"],
-    },
+
     {
       category: "DevOps",
       technologies: [
-        "MySQL",
-        "MariaDB",
-        "GithubAction",
-        "AWS RDS",
-        "AWS S3",
-        "AWS EC2",
+        "MySQL,",
+        "MariaDB,",
+        "GithubAction,",
+        "AWS RDS,",
+        "AWS S3,",
+        "AWS EC2,",
         "Docker",
       ],
     },
@@ -52,17 +53,17 @@ const Skill = () => {
 
   useEffect(() => {
     const container = containerRef.current;
-    const sections = sectionRefs.current;
+    const items = itemRefs.current;
 
-    sections.forEach((section, index) => {
-      gsap.set(section, { opacity: 0, y: 50 });
+    items.forEach((item, index) => {
+      gsap.set(item, { opacity: 0, y: 50 });
 
       ScrollTrigger.create({
         trigger: container,
-        start: `top+=${index * 33}% center`,
-        end: `top+=${(index + 1) * 33}% center`,
+        start: `top+=${index * 20}% center`, // 33%에서 20%로 변경
+        end: `bottom-=${(items.length - index - 1) * 20}% center`, // 끝 지점 조정
         onEnter: () => {
-          gsap.to(section, {
+          gsap.to(item, {
             opacity: 1,
             y: 0,
             duration: 0.5,
@@ -70,7 +71,7 @@ const Skill = () => {
           });
         },
         onLeaveBack: () => {
-          gsap.to(section, {
+          gsap.to(item, {
             opacity: 0,
             y: 50,
             duration: 0.5,
@@ -96,16 +97,20 @@ const Skill = () => {
           <div
             key={groupIndex}
             className={styles.skillGroup}
-            ref={(el) => (sectionRefs.current[groupIndex] = el)}
+            ref={(el) => (itemRefs.current[groupIndex] = el)}
           >
-            <h2>{skillGroup.category}</h2>
-            <ul>
-              {skillGroup.technologies.map((tech, techIndex) => (
-                <li key={techIndex} className={styles.skillItem}>
-                  {tech}
-                </li>
-              ))}
-            </ul>
+            <div className={styles.skillMeta}>
+              <span className={styles.category}>{skillGroup.category}</span>
+            </div>
+            <div className={styles.skillContent}>
+              <ul>
+                {skillGroup.technologies.map((tech, techIndex) => (
+                  <li key={techIndex} className={styles.skillItem}>
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         ))}
       </div>

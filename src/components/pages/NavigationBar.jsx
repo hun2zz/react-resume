@@ -8,11 +8,9 @@ const NavigationBar = ({
   scrollInstance,
 }) => {
   const navItems = [
-    { name: "Intro", to: "intro" },
-    { name: "Overview", to: "introduce" },
-    { name: "Skill", to: "skill" },
-    { name: "Project", to: "project" },
-    { name: "Education", to: "education" },
+    { name: "HOME", to: "HOME" },
+    { name: "PROJECT", to: "PROJECT" },
+    { name: "ABOUT", to: "ABOUT" },
   ];
 
   const handleNavigation = (id) => {
@@ -29,13 +27,7 @@ const NavigationBar = ({
   };
 
   return (
-    <nav
-      className={
-        isYellowBackground
-          ? `${styles.navbar} ${styles.lightSection}`
-          : `${styles.navbar}`
-      }
-    >
+    <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
         <p className={styles.profileImage}>
           <img src={profileImage} alt="프로필" />
@@ -44,13 +36,7 @@ const NavigationBar = ({
       </div>
       <ul>
         {navItems.map((item) => (
-          <li
-            key={item.to}
-            className={`${styles.navia} ${
-              currentSection === item.to ? styles.active : ""
-            }`}
-            onClick={() => handleNavigation(item.to)}
-          >
+          <li key={item.to} className={styles.navia}>
             {item.name}
           </li>
         ))}
