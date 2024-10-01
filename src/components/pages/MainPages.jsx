@@ -33,7 +33,6 @@ const MainPages = () => {
           start: "top bottom", // 트리거 시작 지점 조정
           end: "top top", // 트리거 끝 지점 조정
           scrub: true, // 스크롤에 따라 애니메이션 진행
-          markers: true,
         },
       }
     );
@@ -103,7 +102,7 @@ const MainPages = () => {
         <div id="project" className={styles.section}>
           <Project />
         </div>
-        <div id="screen5" className={styles.section}>
+        <div id="screen5" className={styles.section1}>
           <h1>Screen 5</h1>
         </div>
       </div>
