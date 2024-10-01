@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AnimatedCursor from "react-animated-cursor";
 import styles from "./Project.module.scss";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -17,23 +18,56 @@ const Project = () => {
       description:
         "대학생들의 소개팅을 위한 플랫폼. 사용자 친화적인 인터페이스와 매칭 알고리즘을 통해 대학생들의 만남을 주선합니다.",
       color: "crimson",
-      skills: ["React", "Node.js", "MongoDB"],
+      skills: [
+        "Java",
+        "Spring Boot",
+        "MySQL",
+        "Redis",
+        "AWS(EC2)",
+        "AWS(S3)",
+        "AWS(RDS)",
+        "Docker",
+        "JPA",
+        "React",
+      ],
     },
     {
-      title: "Dockr",
+      title: "애착 페이지",
       description:
-        "컨테이너화된 애플리케이션을 쉽게 배포하고 관리할 수 있는 플랫폼. 개발자와 운영팀 간의 협업을 원활하게 합니다.",
+        "사람들은 누구나 기댈 곳이 필요하고 생각을 비우거나 정리하는 시간이 필요하다고 느껴 여러 사람과 소통하면서 마음을 비울 수 있는 공간입니다",
       color: "MediumSeaGreen",
-      skills: ["Docker", "Kubernetes", "Go"],
+      skills: [
+        "Java",
+        "Spring Boot",
+        "MySQL",
+        "HTML/CSS",
+        "MyBatis",
+        "WebSocket",
+      ],
     },
-    {
-      title: "AI Chat",
-      description:
-        "인공지능 기반의 대화형 챗봇 서비스. 자연어 처리 기술을 활용하여 사용자와 자연스러운 대화를 나눕니다.",
-      color: "dodgerblue",
-      skills: ["Python", "TensorFlow", "NLP"],
-    },
+    // {
+    //   title: "AI Chat",
+    //   description:
+    //     "인공지능 기반의 대화형 챗봇 서비스. 자연어 처리 기술을 활용하여 사용자와 자연스러운 대화를 나눕니다.",
+    //   color: "dodgerblue",
+    //   skills: ["Python", "TensorFlow", "NLP"],
+    // },
   ];
+
+  const [cursorText, setCursorText] = useState("");
+  const [cursorVariant, setCursorVariant] = useState("default");
+
+  const onEnterFrame = () => {
+    setCursorText("View");
+    setCursorVariant("project");
+    document.body.style.cursor = "none";
+  };
+
+  const onLeaveFrame = () => {
+    setCursorText("");
+    setCursorVariant("default");
+    document.body.style.cursor = "auto";
+  };
 
   useEffect(() => {
     let mm = gsap.matchMedia();
@@ -61,9 +95,9 @@ const Project = () => {
         ScrollTrigger.create({
           trigger: headline,
           start: "top 80%",
-          end: "top 50%",
+          end: "top 40%", // 끝 지점을 더 위로 올림
           animation: animation,
-          scrub: true,
+          scrub: 1,
           markers: false,
         });
       });
@@ -76,6 +110,40 @@ const Project = () => {
 
   return (
     <div className={styles.projectContainer}>
+      <AnimatedCursor
+        innerSize={4}
+        outerSize={30}
+        color={cursorVariant === "project" ? "#eeff04" : "#ffffff"}
+        innerScale={1}
+        outerScale={1}
+        outerAlpha={0}
+        hasBlendMode={true}
+        outerStyle={{
+          border: `1.5px solid ${
+            cursorVariant === "project" ? "#eeff04" : "#ffffff"
+          }`,
+        }}
+        innerStyle={{
+          backgroundColor: cursorVariant === "project" ? "#eeff04" : "#ffffff",
+        }}
+        clickables={[
+          "a",
+          'input[type="text"]',
+          'input[type="email"]',
+          'input[type="number"]',
+          'input[type="submit"]',
+          'input[type="image"]',
+          "label[for]",
+          "select",
+          "textarea",
+          "button",
+          ".link",
+        ]}
+        textColor={cursorVariant === "project" ? "#000000" : "#ffffff"}
+        text={cursorText}
+        showSystemCursor={false}
+      />
+
       <div className={styles.spacer}></div>
       <div className={styles.gallery} ref={galleryRef}>
         <div className={styles.left}>
@@ -93,15 +161,17 @@ const Project = () => {
                     <li key={skillIndex}>{skill}</li>
                   ))}
                 </ul>
-                <button className={styles.exploreButton}>
-                  Explore project
-                </button>
+                <button className={styles.exploreButton}>View Project</button>
               </div>
             ))}
           </div>
         </div>
         <div className={styles.right} ref={rightRef}>
-          <div className={styles.desktopPhotos}>
+          <div
+            className={styles.desktopPhotos}
+            onMouseEnter={onEnterFrame}
+            onMouseLeave={onLeaveFrame}
+          >
             {projects.map((project, index) => (
               <div
                 key={index}
