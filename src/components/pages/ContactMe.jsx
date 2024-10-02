@@ -29,18 +29,22 @@ const ContactMe = () => {
         </div>
       </div>
 
-      <MarqueeCh
-        direction="right"
-        texts={["READY", "TO", "JOIN", "YOUR", "TEAM"]}
-        rotateAngle={0}
-        emphasisIndices={[1]} // "CREATE"를 첫 번째 강조색으로
-        secondaryEmphasisIndices={[3]} // "AMAZING"을 두 번째 강조색으로
-      />
-      <MarqueeCh
-        direction="left"
-        texts={["READY", "TO", "JOIN", "YOUR", "TEAM"]}
-        rotateAngle={0}
-      />
+      <div className={styles.marq}>
+        <MarqueeCh
+          direction="right"
+          texts={["감사합니다", "THANK", "YOU", "CONTACT"]}
+          rotateAngle={0}
+          emphasisIndices={[0, 3]}
+          secondaryEmphasisIndices={[1, 2]}
+        />
+        <MarqueeCh
+          direction="left"
+          texts={["감사합니다", "THANK", "YOU", "CONTACT"]}
+          rotateAngle={0}
+          emphasisIndices={[0, 3]}
+          secondaryEmphasisIndices={[1, 2]}
+        />
+      </div>
 
       <div className={styles.footer}>
         <div className={styles.qrCodes}>
@@ -63,15 +67,12 @@ const ContactMe = () => {
           </div>
         </div>
         <div className={styles.location}>
-          <p>LOCATION</p>
-          <p>JinXiu lu, 225-11-1622, Shanghai, PRC</p>
-          <p>FOLLOW US</p>
-          <p>INSTAGRAM ↗</p>
-          <p>VIMEO ↗</p>
+          <p className={styles.locationTitle}>LOCATION</p>
+          <p>Yeongdeungpo-gu, Seoul, South Korea</p>
         </div>
         <div className={styles.backToTop}>
-          <p>Crafted by Lynksen</p>
-          <button>BACK TO THE TOP ▲</button>
+          <p className={styles.madeBy}>Made By</p>
+          <p>JIN SANGHUN.</p>
         </div>
       </div>
     </div>

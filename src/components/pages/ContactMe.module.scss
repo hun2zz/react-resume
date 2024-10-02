@@ -4,8 +4,6 @@
   min-height: 100vh;
   color: #f0f0f0;
   width: 100%;
-  &:nth-child(2) {
-  }
 }
 
 .header {
@@ -17,17 +15,21 @@
     display: flex;
     flex-direction: row;
     width: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
 
     p {
       width: 25%;
+      padding-right: 200px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: left; // 텍스트 자체도 중앙 정렬
       line-height: 2;
+      font-weight: 500;
       &:first-child {
-        padding-left: 20%;
+        padding-left: 200px;
         cursor: pointer;
         width: 50%;
         justify-content: start;
@@ -37,16 +39,8 @@
     }
   }
 }
-
-.mainTitle {
-  font-size: 5rem;
-  font-weight: bold;
-  margin: 2rem 0;
-}
-
-.subTitle {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+.marq {
+  margin-bottom: 100px;
 }
 
 .footer {
@@ -55,28 +49,42 @@
   align-items: flex-end;
 
   .qrCodes {
+    padding-left: 200px;
+    div p {
+      padding-bottom: 20px;
+      padding-left: 16px;
+      font-weight: 700;
+      color: #eeff04;
+    }
     .qrCodeContainer {
       display: flex;
-      gap: 1rem;
+      gap: 3rem;
     }
   }
 
   .location {
+    margin-bottom: 50px;
+    font-weight: 700;
+    .locationTitle {
+      color: #eeff04;
+    }
     p {
-      margin-bottom: 0.5rem;
+      margin-bottom: 1vh;
+      color: #fff;
     }
   }
 
   .backToTop {
-    text-align: right;
+    text-align: left;
+    padding-right: 200px;
+    margin-bottom: 60px;
+    font-weight: 700;
 
-    button {
-      background: none;
-      border: none;
-      color: #f0f0f0;
-      cursor: pointer;
-      padding: 0.5rem 1rem;
-      margin-top: 1rem;
+    .madeBy {
+      color: #eeff04;
+    }
+    p {
+      color: #fff;
     }
   }
 }
