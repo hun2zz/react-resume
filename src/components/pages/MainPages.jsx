@@ -8,6 +8,8 @@ import Skill from "./Skill";
 import Project from "./Project";
 import styles from "./MainPages.module.scss";
 import MarqueeComponent from "./MarqueeComponent";
+import MarqueeCh from "./MarqueeCh";
+import ContactMe from "./ContactMe";
 
 gsap.registerPlugin(ScrollTrigger); // ScrollTrigger 플러그인 등록
 
@@ -98,12 +100,17 @@ const MainPages = () => {
         </div>
         <div id="skill" className={styles.section}>
           <Skill />
+          <MarqueeCh
+            direction="left"
+            texts={["BACKEND", "&", "FRONTEND", "HUN"]}
+            rotateAngle={-3}
+          />
         </div>
         <div id="project" className={styles.section}>
           <Project />
         </div>
         <div id="screen5" className={styles.section1}>
-          <h1>Screen 5</h1>
+          <ContactMe />
         </div>
       </div>
     </>

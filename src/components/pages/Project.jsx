@@ -76,8 +76,7 @@ const Project = () => {
       ScrollTrigger.create({
         trigger: galleryRef.current,
         start: "top top",
-        end: "bottom bottom",
-        markers: true,
+        end: "bottom+=2% bottom", // 여기를 수정했습니다
         pin: rightRef.current,
       });
 
@@ -98,7 +97,6 @@ const Project = () => {
           end: "top 40%", // 끝 지점을 더 위로 올림
           animation: animation,
           scrub: 1,
-          markers: false,
         });
       });
 
